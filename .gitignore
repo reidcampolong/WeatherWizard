@@ -10,6 +10,8 @@ __pycache__/
 
 .vscode/*
 
+privateKey.py
+
 # Distribution / packaging
 .Python
 build/
