@@ -4,6 +4,7 @@ import {
   FormGroup, Label, Input,
   Button, Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
+import sendSubscribe from './DatabaseSender';
 import styled from 'styled-components';
 
 const StyledContainer = styled(Container)`
@@ -15,11 +16,17 @@ const StyledContainer = styled(Container)`
 
 const SignupView = () => {
   const [dropdownIsOpen, setDropDownOpen] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [location, setLocation] = useState<string>('');
+
+  const onFormSubmit = (e: React.FormEvent) => {
+    sendSubscribe(email, location);
+  }
 
   return (
     <StyledContainer className="App">
     <h2>Weather Powered Email</h2>
-    <Form className="form">
+    <Form onSubmit={(e) => onFormSubmit(e)}>
       <Col>
         <FormGroup>
           <Label>Email Address</Label>
@@ -27,6 +34,7 @@ const SignupView = () => {
             type="email"
             name="email"
             placeholder="weather@klaviyo.com"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </FormGroup>
       </Col>
