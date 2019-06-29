@@ -5,7 +5,7 @@ import {
   Button
 } from 'reactstrap';
 import DropDown from './DropDown';
-import sendSubscribe from './DatabaseSender';
+import sendSubscribe from '../data/DatabaseSender';
 import styled from 'styled-components';
 
 const StyledContainer = styled(Container)`
@@ -15,12 +15,17 @@ const StyledContainer = styled(Container)`
     border: 1px solid black;
 `;
 
-const SignupView = () => {
+interface ISignupView {
+  readonly setSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SignupView: React.FC<ISignupView> = ({ setSubmitted }) => {
   const [email, setEmail] = useState<string>('');
   const [location, setLocation] = useState<string>('');
 
   const onFormSubmit = (e: React.FormEvent) => {
     sendSubscribe(email, location);
+    setSubmitted(true);
   }
 
   return (
@@ -40,7 +45,7 @@ const SignupView = () => {
         </Col>
         <Col>
           <FormGroup>
-            <DropDown placeholder="Select your location..." setDropDownSelect={setLocation}/>
+            <DropDown placeholder="Select your location..." setDropDownSelect={setLocation} />
           </FormGroup>
         </Col>
         <Button>Submit</Button>
