@@ -20,7 +20,7 @@ const SignupView = () => {
   const [location, setLocation] = useState<string>('');
 
   const onFormSubmit = (e: React.FormEvent) => {
-    sendSubscribe(email, location);
+    sendSubscribe(email, "Boston");
   }
 
   return (
