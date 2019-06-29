@@ -15,4 +15,8 @@ def subscribe(request):
   print("Received new request")
   request_data = json.loads(request.body)
   print(request_data)
-  return request_data
+  subscriber = Subscriber(user_email=request_data.get('email'), user_location=request_data.get('location'),
+    registered_on=datetime.datetime.now());
+  subscriber.save();
+
+  return HttpResponse("Success!");

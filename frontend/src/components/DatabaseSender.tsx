@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 const subscribeURL = "http://localhost:8080/subscribe/"
 
@@ -11,10 +10,8 @@ const axiosHeader = ({
 
 const sendSubscribe = (email: string, location: string) => {
   return axios.post(subscribeURL, {
-    data: {
       email: email,
       location: location,
-    }
   }, axiosHeader);
 }
 
