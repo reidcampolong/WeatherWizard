@@ -1,21 +1,21 @@
 # WeatherWizard
 
-WeatherWizard is a full stack application that allows users to subscribe to a mailing list and be sent discounts based on the weather in their area.
+WeatherWizard is a full stack application that allows users to subscribe to a mailing list and be sent emails based on the weather in their area.
 
 ## Running the Project
 ### Front-end
 
-The front-end application is built with JavaScript & React.
+The front-end application is built with **JavaScript** & **React**.
 
 After cloning, run the following commands
 ```bash
 cd frontend
 yarn start
 ```
-- Users can navigate to localhost:3000 to signup!
+- Users can navigate to *localhost:3000* to signup!
 ### Backend
 
-The backend application is built with Python & Django with a MySQL database.
+The backend application is built with **Python** & **Django** with a **MySQL** database.
 
 After cloning, run the following commands
 ```bash
