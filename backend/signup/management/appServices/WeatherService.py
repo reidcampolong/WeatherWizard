@@ -1,6 +1,9 @@
 from .privateKey import key
 import requests, json
 
+_futureWeatherURL = 'http://api.weatherbit.io/v2.0/forecast/daily?city=CITY&days=1&units=I&key=KEY'
+_currentWeatherURL = 'http://api.weatherbit.io/v2.0/current?city=CITY&units=I&key=KEY'
+
 def getWeatherData(location):
     futureData = _getJSONFutureWeather(location)
     currentData = _getJSONCurrentWeather(location)
@@ -31,5 +34,3 @@ def _getJSONFutureWeather(location):
 def _insertURLParams(url, location):
     return url.replace('CITY', location).replace('KEY', key)
 
-_futureWeatherURL = 'http://api.weatherbit.io/v2.0/forecast/daily?city=CITY&days=1&units=I&key=KEY'
-_currentWeatherURL = 'http://api.weatherbit.io/v2.0/current?city=CITY&units=I&key=KEY'

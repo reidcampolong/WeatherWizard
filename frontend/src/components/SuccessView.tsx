@@ -9,11 +9,15 @@ const StyledContainer = styled(Container)`
     border: 1px solid black;
 `;
 
-const SuccessView = () => {
+interface ISuccessView {
+  readonly response: string;
+}
+
+const SuccessView: React.FC<ISuccessView> = ( {response} ) => {
   return (
     <StyledContainer className="App">
       <h2>Weather Powered Email</h2>
-      Thanks for submitting!
+      {response}
     </StyledContainer>
   );
 }

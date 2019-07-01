@@ -16,18 +16,22 @@ const StyledContainer = styled(Container)`
 `;
 
 interface ISignupView {
-  readonly setSubmitted: React.Dispatch<React.SetStateAction<boolean>>;
+  readonly setResponse: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
-const SignupView: React.FC<ISignupView> = ({ setSubmitted }) => {
+const SignupView: React.FC<ISignupView> = ({ setResponse }) => {
   const [email, setEmail] = useState<string>('');
   const [location, setLocation] = useState<string>('');
 
-  const onFormSubmit = (e: React.FormEvent) => {
-    sendSubscribe(email, location);
-    setSubmitted(true);
+  const onFormSubmit = (e: any) => {
+    e.preventDefault();
+    sendSubscribe(email, location).then(({ data }) => {
+      setResponse(data);
+    }).catch(error =>
+      setResponse("You are already registered with us! Keep your eye out for our emails")
+    );
   }
-
+  
   return (
     <StyledContainer className="App">
       <h2>Weather Powered Email</h2>
@@ -48,12 +52,10 @@ const SignupView: React.FC<ISignupView> = ({ setSubmitted }) => {
             <DropDown placeholder="Select your location..." setDropDownSelect={setLocation} />
           </FormGroup>
         </Col>
-        <Button>Submit</Button>
+        <Button>Subscribe</Button>
       </Form>
     </StyledContainer>
   );
 }
-
-//<Dropdown suggestions={cities} isOpen={dropdownIsOpen} toggle={() => setDropDownOpen(!dropdownIsOpen)}>
 
 export default SignupView;

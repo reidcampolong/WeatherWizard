@@ -3,11 +3,11 @@ import SubscribeView from './components/SubscribeView';
 import SuccessView from './components/SuccessView';
 
 const App: React.FC = () => {
-  const [hasSubmitted, setSubmitted] = useState<boolean>(false);
+  const [response, setResponse] = useState<string>();
 
   return (
     <div>
-      {hasSubmitted ? <SuccessView/> : <SubscribeView setSubmitted={setSubmitted}/>}
+      {response ? <SuccessView response={response} /> : <SubscribeView setResponse={setResponse} />}
     </div>
   );
 };

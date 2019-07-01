@@ -2,6 +2,6 @@ from . import views
 from django.urls import path, include
 
 urlpatterns = [
-    path('', views.homepage),
+    path('', views.subscribe),
     path('subscribe/', views.subscribe)
 ]

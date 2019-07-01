@@ -6,17 +6,16 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Subscriber
 
-def homepage(request):
-  return HttpResponse("Signup here!")
-
 @csrf_exempt
 @require_http_methods(["POST"])
 def subscribe(request):
-  print("Received new request")
   request_data = json.loads(request.body)
-  print(request_data)
-  subscriber = Subscriber(user_email=request_data.get('email'), user_location=request_data.get('location'),
-    registered_on=datetime.datetime.now());
-  subscriber.save();
+  email = request_data.get('email')
 
-  return HttpResponse("Success!");
+  if Subscriber.objects.filter(user_email=email).count() > 0:
+    return HttpResponse(status=406)
+  else:
+    subscriber = Subscriber(user_email=request_data.get('email'), user_location=request_data.get('location'),
+      registered_on=datetime.datetime.now());
+    subscriber.save();
+    return HttpResponse("Thanks for registering with us!")
